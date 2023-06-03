@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import PropTypes from "prop-types";
+import { render } from "react-dom";
+import ReactTable from "react-table";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import { makeData } from "./util";
+import Pagination from "./Pagination";
+
+import "react-table/react-table.css";
+import "./App.css";
+
+const App = props => (
+  <ReactTable
+    PaginationComponent={Pagination}
+    data={makeData()}
+    columns={[
+      {
+        Header: "First Name",
+        accessor: "firstName",
+        minWidth: 300
+      },
+      {
+        Header: "Last Name",
+        accessor: "lastName",
+        minWidth: 300
+      },
+      {
+        Header: "Age",
+        accessor: "age",
+        minWidth: 300
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        minWidth: 300
+      },
+      {
+        Header: "Visits",
+        accessor: "visits",
+        minWidth: 300
+      }
+    ]}
+  />
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+render(<App />, document.getElementById("root"));
